@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escabia Chill — Lista de Precios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0c0c0c;
+    --bg2:       #111111;
+    --bg3:       #161616;
+    --bg4:       #1c1c1c;
+    --gold:      #C9A84C;
+    --gold-dim:  #a6883a;
+    --gold-faint:#2a2316;
+    --text:      #e8e3d8;
+    --text-dim:  #8a8378;
+    --border:    #2a2a2a;
+    --border2:   #333;
+    --whisky:    #b8600a;
+    --tinto:     #7a1c2e;
+    --cab:       #4a1c5c;
+    --blanco:    #1a3a4a;
+    --rose:      #6a2438;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 6rem 2rem 5rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(122,28,46,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 10%, rgba(184,96,10,0.08) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.008) 2px,
+      rgba(255,255,255,0.008) 4px
+    );
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.75rem 2.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollDrop 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollDrop {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ─── CATEGORY NAV ─── */
+  .cat-nav {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .cat-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .cat-nav-item:hover { color: var(--text); border-color: var(--gold); }
+  .cat-nav-item .emoji { font-size: 0.9rem; }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+
+  /* ─── SECTION ─── */
+  .section { margin-bottom: 6rem; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-accent {
+    width: 4px;
+    height: 56px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .section-header-text { flex: 1; }
+
+  .section-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.35rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .section-title .emoji { margin-right: 0.5rem; }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: var(--border2);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  /* ─── PRODUCT TABLE ─── */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .product-table tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .product-table tr:last-child { border-bottom: none; }
+
+  .product-table tr:hover { background: var(--bg3); }
+
+  .product-table td {
+    padding: 0.9rem 1rem;
+    vertical-align: middle;
+  }
+
+  .product-table td:first-child { padding-left: 0; }
+  .product-table td:last-child { padding-right: 0; }
+
+  .product-name {
+    font-size: 0.88rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .product-price {
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .product-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
+
+  /* ─── WHISKY SPECIAL CARDS ─── */
+  .whisky-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+  }
+
+  .whisky-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .whisky-card:hover { border-color: var(--gold-dim); }
+
+  .whisky-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--whisky), var(--gold));
+  }
+
+  .whisky-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .whisky-card-size {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+
+  .whisky-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .whisky-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ─── ACCENT COLORS PER CAT ─── */
+  .accent-whisky { background: var(--whisky); }
+  .accent-tinto  { background: var(--tinto); }
+  .accent-cab    { background: var(--cab); }
+  .accent-blanco { background: var(--blanco); }
+  .accent-rose   { background: var(--rose); }
+
+  .dot-whisky { background: var(--whisky); }
+  .dot-tinto  { background: var(--tinto); }
+  .dot-cab    { background: var(--cab); }
+  .dot-blanco { background: var(--blanco); }
+  .dot-rose   { background: var(--rose); }
+
+  /* ─── ACLARACIÓN BANNER ─── */
+  .aclaracion {
+    background: var(--gold-faint);
+    border: 1px solid var(--gold-dim);
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.8rem;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .aclaracion-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .aclaracion-text {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 3.5rem 2.5rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo span { color: var(--text); font-weight: 300; }
+
+  .footer-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .footer-cats {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .footer-cat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .footer-cat-items { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .footer-cat-item {
+    font-size: 0.78rem;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-legal {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    nav { padding: 0 1rem; }
+    .nav-links, .nav-badge { display: none; }
+    .hero-title { font-size: 3rem; }
+    .cat-nav { justify-content: flex-start; }
+    .main { padding: 3rem 1rem; }
+    .section-count { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-cats { flex-wrap: wrap; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Escabia <span>Chill</span></a>
+  <ul class="nav-links">
+    <li><a href="#whisky">Whisky</a></li>
+    <li><a href="#tintos">Tintos</a></li>
+    <li><a href="#cabernet">Cabernet</a></li>
+    <li><a href="#blancos">Blancos</a></li>
+    <li><a href="#rose">Rosé</a></li>
+  </ul>
+  <span class="nav-badge">Distribución Mayorista</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Distribución cerrada · Venta por caja</p>
+    <h1 class="hero-title">Escabia <em>Chill</em></h1>
+    <p class="hero-sub">Lista de precios vigente</p>
+    <div class="hero-line"></div>
+    <p class="hero-desc">Selección de whiskies y vinos argentinos de las mejores bodegas. Precios mayoristas exclusivos para revendedores.</p>
+    <a href="#catalogo" class="hero-cta">Ver catálogo completo</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- CATEGORY NAV -->
+<div class="cat-nav">
+  <a class="cat-nav-item" href="#whisky">Whisky</a>
+  <a class="cat-nav-item" href="#tintos">Malbec & Blends</a>
+  <a class="cat-nav-item" href="#cabernet">Cabernet</a>
+  <a class="cat-nav-item" href="#blancos">Blancos</a>
+  <a class="cat-nav-item" href="#rose">Rosé</a>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="catalogo">
+
+  <!-- AVISO -->
+  <div class="aclaracion">
+    <span class="aclaracion-label">Aclaración</span>
+    <span class="aclaracion-text">Todos los precios están expresados en pesos argentinos (ARS) y son por caja/6 botellas, con excepción de los whiskies. Las compras se realizan exclusivamente por caja. Precios sujetos a actualización sin previo aviso.</span>
+  </div>
+
+  <!-- ══ WHISKY ══ -->
+  <section class="section" id="whisky">
+    <div class="section-header">
+      <div class="section-accent accent-whisky"></div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Spirits</p>
+        <h2 class="section-title">Whisky</h2>
+      </div>
+      <span class="section-count">02</span>
+    </div>
+    <div class="whisky-cards">
+      <div class="whisky-card">
+        <div class="whisky-card-name">Johnnie Walker<br>Black Label</div>
+        <div class="whisky-card-size">1 litro · Blended Scotch</div>
+        <div class="whisky-card-price">$55.000</div>
+        <div class="whisky-card-label">por botella</div>
+      </div>
+      <div class="whisky-card">
+        <div class="whisky-card-name">Johnnie Walker<br>Red Label</div>
+        <div class="whisky-card-size">1 litro · Blended Scotch</div>
+        <div class="whisky-card-price">$31.000</div>
+        <div class="whisky-card-label">por botella</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TINTOS / MALBEC ══ -->
+  <section class="section" id="tintos">
+    <div class="section-header">
+      <div class="section-accent accent-tinto"></div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Vinos Tintos</p>
+        <h2 class="section-title">Malbec & Blends</h2>
+      </div>
+      <span class="section-count">52</span>
+    </div>
+    <table class="product-table">
+      <tbody>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Álamos Malbec</span></td><td class="product-price">$36.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Álamos Malbec Reserva</span></td><td class="product-price">$41.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Alma Negra Tinto</span></td><td class="product-price">$134.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Altos Las Hormigas Malbec</span></td><td class="product-price">$39.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Angélica Zapata Malbec</span></td><td class="product-price">$144.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Angélica Zapata Malbec Alta (Caja Cartón)</span></td><td class="product-price">$148.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Angélica Zapata Malbec Alta (Caja Madera)</span></td><td class="product-price">$171.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Cordero Piel de Lobo Malbec</span></td><td class="product-price">$31.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Don Valentín Lacrado</span></td><td class="product-price">$25.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">DV Catena Malbec-Cabernet</span></td><td class="product-price">$73.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">DV Catena Malbec-Malbec</span></td><td class="product-price">$109.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">El Enemigo Malbec</span></td><td class="product-price">$107.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">El Enemigo Malbec Gran Reserva</span></td><td class="product-price">$118.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Emilia Malbec</span></td><td class="product-price">$40.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Escorihuela Gascón Malbec</span></td><td class="product-price">$50.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Fabre Montmayou Malbec</span></td><td class="product-price">$45.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Familia Gascón Malbec</span></td><td class="product-price">$35.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Famiglia Bianchi Malbec</span></td><td class="product-price">$41.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Fond de Cave Malbec</span></td><td class="product-price">$46.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Gran Enemigo Agrelo</span></td><td class="product-price">$261.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Gran Enemigo Chacayes</span></td><td class="product-price">$261.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Gran Enemigo Corte</span></td><td class="product-price">$261.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Gran Enemigo El Cepillo</span></td><td class="product-price">$261.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Gran Enemigo Gualtallary</span></td><td class="product-price">$278.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">La Linda Malbec</span></td><td class="product-price">$50.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">La Máquina Malbec</span></td><td class="product-price">$44.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">La Poderosa Malbec</span></td><td class="product-price">$33.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Latitud 33° Malbec</span></td><td class="product-price">$44.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Los Haroldos Estate Malbec</span></td><td class="product-price">$31.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Luigi Bosca Malbec</span></td><td class="product-price">$75.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Luigi Bosca Malbec (Línea Superior)</span></td><td class="product-price">$82.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Malbec Argentino</span></td><td class="product-price">$387.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Mosquita Muerta Blend de Tintas</span></td><td class="product-price">$102.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Nicasia Gran Blend (Merlot / Petit / Malbec)</span></td><td class="product-price">$59.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Nicasia Malbec</span></td><td class="product-price">$49.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Nicasia Red Blend</span></td><td class="product-price">$46.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">OTRO LOCO MÁS Malbec</span></td><td class="product-price">$30.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Perro Callejero Malbec</span></td><td class="product-price">$46.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Pispi Blend de Tintas</span></td><td class="product-price">$60.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Portillo Malbec</span></td><td class="product-price">$31.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Rutini Cabernet Franc-Malbec</span></td><td class="product-price">$98.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Rutini Cabernet-Malbec</span></td><td class="product-price">$87.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Rutini Cabernet-Merlot</span></td><td class="product-price">$98.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Rutini Cabernet Sauvignon-Malbec</span></td><td class="product-price">$98.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Rutini Cabernet-Syrah</span></td><td class="product-price">$98.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Salentein Reserva Malbec</span></td><td class="product-price">$68.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Saint Felicien Malbec</span></td><td class="product-price">$54.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Sapo de Otro Pozo Blend de Tintas</span></td><td class="product-price">$76.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Santa Julia Malbec</span></td><td class="product-price">$35.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Trumpeter Malbec</span></td><td class="product-price">$51.000</td></tr>
+        <tr><td><span class="product-dot dot-tinto"></span><span class="product-name">Xeneize Malbec</span></td><td class="product-price">$44.000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══ CABERNET ══ -->
+  <section class="section" id="cabernet">
+    <div class="section-header">
+      <div class="section-accent accent-cab"></div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Vinos Tintos</p>
+        <h2 class="section-title">Cabernet Franc / Sauvignon</h2>
+      </div>
+      <span class="section-count">10</span>
+    </div>
+    <table class="product-table">
+      <tbody>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Angélica Zapata Cabernet Franc Alta</span></td><td class="product-price">$139.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Angélica Zapata Cabernet Sauvignon Alta</span></td><td class="product-price">$139.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">El Enemigo Cabernet Franc</span></td><td class="product-price">$118.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Fond de Cave Reserva Cabernet Franc</span></td><td class="product-price">$55.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Luigi Bosca Cabernet</span></td><td class="product-price">$82.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Nicasia Cabernet Franc</span></td><td class="product-price">$49.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Nicasia Gran Blend Cabernet</span></td><td class="product-price">$59.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Saint Felicien Cabernet Franc</span></td><td class="product-price">$59.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Trumpeter Cabernet Franc</span></td><td class="product-price">$58.000</td></tr>
+        <tr><td><span class="product-dot dot-cab"></span><span class="product-name">Trumpeter Cabernet Sauvignon</span></td><td class="product-price">$58.000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══ BLANCOS ══ -->
+  <section class="section" id="blancos">
+    <div class="section-header">
+      <div class="section-accent accent-blanco"></div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Vinos Blancos</p>
+        <h2 class="section-title">Blancos</h2>
+      </div>
+      <span class="section-count">12</span>
+    </div>
+    <table class="product-table">
+      <tbody>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Álamos Chardonnay</span></td><td class="product-price">$41.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">El Enemigo Chardonnay</span></td><td class="product-price">$118.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Fond de Cave Chardonnay</span></td><td class="product-price">$46.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">La Linda Chardonnay</span></td><td class="product-price">$57.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Luigi Bosca Chardonnay</span></td><td class="product-price">$82.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Luigi Bosca Sauvignon Blanc</span></td><td class="product-price">$82.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Nicasia Blanc de Blancs</span></td><td class="product-price">$49.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Portillo Chardonnay</span></td><td class="product-price">$36.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Portillo Sauvignon Blanc</span></td><td class="product-price">$36.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Saint Felicien Chardonnay Roble</span></td><td class="product-price">$59.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Salentein Reserva Chardonnay</span></td><td class="product-price">$68.000</td></tr>
+        <tr><td><span class="product-dot dot-blanco"></span><span class="product-name">Trumpeter Chardonnay</span></td><td class="product-price">$58.000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══ ROSÉ ══ -->
+  <section class="section" id="rose">
+    <div class="section-header">
+      <div class="section-accent accent-rose"></div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Vinos Rosados</p>
+        <h2 class="section-title">Rosé</h2>
+      </div>
+      <span class="section-count">02</span>
+    </div>
+    <table class="product-table">
+      <tbody>
+        <tr><td><span class="product-dot dot-rose"></span><span class="product-name">Famiglia Bianchi Rosé</span></td><td class="product-price">$41.000</td></tr>
+        <tr><td><span class="product-dot dot-rose"></span><span class="product-name">Salentein Reserva Rosé</span></td><td class="product-price">$68.000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-gold-line"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Escabia <span>Chill</span></div>
+      <div class="footer-tagline">Distribución mayorista cerrada · Venta por caja</div>
+    </div>
+    <div class="footer-cats">
+      <div>
+        <div class="footer-cat-label">Spirits</div>
+        <div class="footer-cat-items">
+          <span class="footer-cat-item">Whisky</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-cat-label">Tintos</div>
+        <div class="footer-cat-items">
+          <span class="footer-cat-item">Malbec & Blends</span>
+          <span class="footer-cat-item">Cabernet</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-cat-label">Otros</div>
+        <div class="footer-cat-items">
+          <span class="footer-cat-item">Blancos</span>
+          <span class="footer-cat-item">Rosé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2025 Escabia Chill — Todos los precios en ARS</span>
+    <span class="footer-legal">Precios sujetos a actualización sin previo aviso</span>
+  </div>
+</footer>
+
+</body>
+</html>
